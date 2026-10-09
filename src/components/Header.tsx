@@ -1,8 +1,11 @@
+
 import React from 'react'
 import { BsCart4 } from "react-icons/bs";
 import NavLinks from './NavLinks';
 
-const Header = () => {
+
+const Header = async() => {
+   
 
     const date = new Date().toLocaleDateString("bn-bd" , {
         dateStyle: "full"
