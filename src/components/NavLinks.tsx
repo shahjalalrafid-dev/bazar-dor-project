@@ -18,7 +18,7 @@ const NavLinks = async() => {
     <section className='container mx-auto py-4'>
         <div className='flex gap-7'>
             {
-                data.map((item: INav, index:number) => <div className='flex gap-1.5 items-center' key={index}>
+                data.map((item: INav, index:number) => <div className='cursor-pointer flex gap-1.5 items-center' key={index}>
                     <div className='text-[12px]'>{item.icon}</div>
                     <div className='font-semibold text-[12px]'>{item.nameBn}</div>
 

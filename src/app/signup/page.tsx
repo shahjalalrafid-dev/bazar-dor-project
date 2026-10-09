@@ -1,6 +1,7 @@
 'use client'
 
 import { authClient } from '@/lib/auth-client';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { FaGithub } from "react-icons/fa";
@@ -8,20 +9,25 @@ import { toast } from 'react-toastify';
 
 const SignUp = () => {
     const router = useRouter();
+    const handleGoogleSignUp = async () => {
+         await authClient.signIn.social({
+            provider: "google",
+        });
+    }
 
     const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const {email, password, confirmPassword, name} = Object.fromEntries(formData.entries()) as {email: string, password: string, confirmPassword: string, name: string}
-        if(password !== confirmPassword) {
+        const { email, password, confirmPassword, name } = Object.fromEntries(formData.entries()) as { email: string, password: string, confirmPassword: string, name: string }
+        if (password !== confirmPassword) {
             toast.error('Password do not match');
             return;
         }
         const { data, error } = await authClient.signUp.email({
-            email, 
+            email,
             password,
             name
-            
+
 
         })
         if (data) {
@@ -32,7 +38,7 @@ const SignUp = () => {
             toast.error('Sign Up Failed');
         }
     }
-
+    
 
 
 
@@ -60,10 +66,10 @@ const SignUp = () => {
                         <button className="btn btn-success mt-4">অ্যাকাউন্ট তৈরি করুন</button>
                         <hr />
                         <div className='flex gap-2'>
-                            <button className="btn btn-active">Google দিয়ে চালিয়ে যান</button>
+                            <button className="btn btn-active" onClick={handleGoogleSignUp}>Google দিয়ে চালিয়ে যান</button>
                             <button className="btn btn-active"> <FaGithub /> GitHub দিয়ে চালিয়ে যান</button>
                         </div>
-                        <p className='text-center'>অ্যাকাউন্ট আছে? <span className='text-green-500'>সাইন ইন করুন</span> </p>
+                        <p className='text-center'>অ্যাকাউন্ট আছে? <Link href={'/signin'} ><span className='text-green-500 cursor-pointer'>সাইন ইন করুন</span></Link>  </p>
 
 
                     </fieldset>

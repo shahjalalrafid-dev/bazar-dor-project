@@ -1,5 +1,6 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { FaGithub } from "react-icons/fa";
@@ -7,20 +8,31 @@ import { toast } from 'react-toastify';
 
 const SignIn = () => {
     const router = useRouter();
-    const onSubmit = async(e: React.SubmitEvent<HTMLElement>) => {
+    const handleGoogleSignIn = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+
+        });
+    }
+    const handleGithubSignIn = async () => {
+         await authClient.signIn.social({
+            provider: "github"
+        })
+    }
+    const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const{email, password} = Object.fromEntries(formData.entries()) as {email: string, password: string};
+        const { email, password } = Object.fromEntries(formData.entries()) as { email: string, password: string };
 
-        const {data, error} = await authClient.signIn.email({
+        const { data, error } = await authClient.signIn.email({
             email,
             password
         })
-        if(data){
+        if (data) {
             toast.success('Signed in Successfully');
             router.push('/');
         }
-        if(error){
+        if (error) {
             toast.error('Credential Mismatch');
         }
     }
@@ -45,10 +57,10 @@ const SignIn = () => {
                         <button className="btn btn-success mt-4">সাইন ইন</button>
                         <hr />
                         <div className='flex gap-2'>
-                            <button className="btn btn-active">Google দিয়ে চালিয়ে যান</button>
-                            <button className="btn btn-active"> <FaGithub /> GitHub দিয়ে চালিয়ে যান</button>
+                            <button className="btn btn-active" onClick={handleGoogleSignIn}>Google দিয়ে চালিয়ে যান</button>
+                            <button className="btn btn-active" onClick={handleGithubSignIn}> <FaGithub /> GitHub দিয়ে চালিয়ে যান</button>
                         </div>
-                        <p className='text-center'>অ্যাকাউন্ট নেই?  <span className='text-green-500'>সাইন আপ করুন</span> </p>
+                        <p className='text-center'>অ্যাকাউন্ট নেই? <Link href={'/signup'} ><span className='text-green-500 cursor-pointer'>সাইন আপ করুন</span></Link>  </p>
 
                     </fieldset>
                 </form>
