@@ -2,6 +2,7 @@
 import React from 'react'
 import { BsCart4 } from "react-icons/bs";
 import NavLinks from './NavLinks';
+import Link from 'next/link';
 
 
 const Header = async() => {
@@ -25,8 +26,10 @@ const Header = async() => {
                     </div>
                 </div>
                 <div className='flex gap-2'>
-                    <button className="btn btn-outline font-semibold text-sm">সাইন ইন</button>
-                    <button className="btn btn-success font-semibold text-sm">সাইন আপ</button>
+                    <Link href={'/signin'}  ><button className="btn btn-outline font-semibold text-sm">সাইন ইন</button></Link>
+                    <Link href={'/signup'}><button className="btn btn-success font-semibold text-sm">সাইন আপ</button></Link>
+                    
+                    
                 </div>
 
             </div>
