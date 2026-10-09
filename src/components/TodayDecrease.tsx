@@ -17,7 +17,7 @@ export interface IIncrease {
 
 const TodayDecrease = async () => {
 
-    const res = await fetch('https://api.abcz.workers.dev/api/bazardor/products');
+    const res = await fetch('https://api.api-store.workers.dev/api/bazardor/products');
     const data = await res.json();
     const filteredData = data.filter((item: IIncrease) => item.change.dir === "down");
 

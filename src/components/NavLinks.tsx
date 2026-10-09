@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 export interface INav {
   id: string
@@ -7,7 +8,7 @@ export interface INav {
 }
 const NavLinks = async() => {
 
-    const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories');
+    const res = await fetch('https://api.api-store.workers.dev/api/bazardor/categories');
     const data = await res.json();
     
 
@@ -18,12 +19,13 @@ const NavLinks = async() => {
     <section className='container mx-auto py-4'>
         <div className='flex gap-7'>
             {
-                data.map((item: INav, index:number) => <div className='cursor-pointer flex gap-1.5 items-center' key={index}>
+                data.map((item: INav, index:number) => <Link href={`/category/${item.slug}`} key={index} > <div className='cursor-pointer flex gap-1.5 items-center' >
                     <div className='text-[12px]'>{item.icon}</div>
                     <div className='font-semibold text-[12px]'>{item.nameBn}</div>
 
 
-                </div>   )
+                </div>  
+                </Link> )
             }
 
         </div>
