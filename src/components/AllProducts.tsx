@@ -1,12 +1,14 @@
 import React from 'react'
 import { TbTriangleInvertedFilled } from "react-icons/tb";
 import { IoTriangleSharp } from "react-icons/io5";
+import Link from 'next/link';
 export interface IAllProducts {
     categoryIcon: string,
     categoryNameBn: string,
     nameBn: string,
     unit: string,
     today: number,
+    id: number
 
     change: {
         dir: string;
@@ -35,34 +37,41 @@ const AllProducts = async () => {
                     {
                         data.map((item: IAllProducts, index: number) =>
 
+                            <Link href={`/categorydetails/${item.id}`} key={item.id}>
 
+                                <div key={index} className=' cursor-pointer bg-base-300 rounded-2xl p-4'>
+                                    <div className='flex gap-2'>
+                                        <div className='w-12 h-12 bg-base-200 relative'>
+                                            <p className='w-full text-4xl absolute top-1'>{item.categoryIcon} </p>
+                                        </div>
+                                        <div>
+                                            <p>{item.nameBn}</p>
+                                            <p>প্রতি কেজি</p>
+                                        </div>
 
-                            <div key={index} className=' cursor-pointer bg-base-300 rounded-2xl p-4'>
-                                <div className='flex gap-2'>
-                                    <div className='w-12 h-12 bg-base-200 relative'>
-                                        <p className='w-full text-4xl absolute top-1'>{item.categoryIcon} </p>
                                     </div>
-                                    <div>
-                                        <p>{item.nameBn}</p>
-                                        <p>প্রতি কেজি</p>
+                                    <p className='mt-2 mb-1'>আজকের দাম</p>
+                                    <div className='flex justify-between'>
+                                        <p>{item.today} টাকা</p>
+                                        <div className='flex items-center gap-1'>
+                                            {
+                                                item.change.dir === "up" ? (<IoTriangleSharp className='text-red-400' />) : item.change.dir === "down" ? (<TbTriangleInvertedFilled className='text-green-600' />) : ("")
+                                            }
+
+                                            <p>{item.change.pct}%</p>
+
+                                        </div>
                                     </div>
+
 
                                 </div>
-                                <p className='mt-2 mb-1'>আজকের দাম</p>
-                                <div className='flex justify-between'>
-                                    <p>{item.today} টাকা</p>
-                                    <div className='flex items-center gap-1'>
-                                        {
-                                            item.change.dir === "up" ? (<IoTriangleSharp className='text-red-400' />) : item.change.dir === "down" ? (<TbTriangleInvertedFilled className='text-green-600' />) :  ("")
-                                        }
-                                        
-                                        <p>{item.change.pct}%</p>
-
-                                    </div>
-                                </div>
 
 
-                            </div>
+                            </Link>
+
+
+
+
 
 
 

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react'
 import { IoTriangleSharp } from "react-icons/io5";
 export interface IIncrease {
@@ -6,6 +7,7 @@ export interface IIncrease {
     nameBn: string,
     unit: string,
     today: number,
+    id: number
     change: {
         dir: string;
         pct: number;
@@ -19,7 +21,7 @@ const TodayIncrease = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/bazardor/products');
     const data = await res.json();
     const filteredData = data.filter((item: IIncrease) => item.change.dir === "up");
-   
+
 
 
 
@@ -34,33 +36,39 @@ const TodayIncrease = async () => {
                 </div>
                 <div className='grid grid-cols-3 gap-4'>
                     {
-                        filteredData.sort((a:IIncrease ,b:IIncrease) => b.change.pct - a.change.pct ).slice(0,6).map((item: IIncrease, index: number) =>
+                        filteredData.sort((a: IIncrease, b: IIncrease) => b.change.pct - a.change.pct).slice(0, 6).map((item: IIncrease, index: number) =>
 
+                            <Link href={`/categorydetails/${item.id}`} key={item.id}>
 
+                                <div key={index} className=' cursor-pointer bg-base-300 rounded-2xl p-4'>
+                                    <div className='flex gap-2'>
+                                        <div className='w-12 h-12 bg-base-200 relative'>
+                                            <p className='w-full text-4xl absolute top-1'>{item.categoryIcon} </p>
+                                        </div>
+                                        <div>
+                                            <p>{item.nameBn}</p>
+                                            <p>প্রতি {item.unit}</p>
+                                        </div>
 
-                            <div key={index} className=' cursor-pointer bg-base-300 rounded-2xl p-4'>
-                                <div className='flex gap-2'>
-                                    <div className='w-12 h-12 bg-base-200 relative'>
-                                        <p className='w-full text-4xl absolute top-1'>{item.categoryIcon} </p>
                                     </div>
-                                    <div>
-                                        <p>{item.nameBn}</p>
-                                        <p>প্রতি {item.unit}</p>
+                                    <p className='mt-2 mb-1'>আজকের দাম</p>
+                                    <div className='flex justify-between'>
+                                        <p>{item.today} টাকা</p>
+                                        <div className='flex items-center gap-1'>
+                                            <IoTriangleSharp className='text-red-400' />
+                                            <p>{item.change.pct}%</p>
+
+                                        </div>
                                     </div>
+
 
                                 </div>
-                                <p className='mt-2 mb-1'>আজকের দাম</p>
-                                <div className='flex justify-between'>
-                                    <p>{item.today} টাকা</p>
-                                    <div className='flex items-center gap-1'>
-                                        <IoTriangleSharp className='text-red-400' />
-                                        <p>{item.change.pct}%</p>
-
-                                    </div>
-                                </div>
 
 
-                            </div>
+                            </Link>
+
+
+
 
 
 
@@ -72,7 +80,7 @@ const TodayIncrease = async () => {
 
 
 
-                    
+
 
 
                 </div>
