@@ -23,7 +23,7 @@ const AllProducts = async () => {
 
 
     return (
-        <section>
+        <section id='allproducts'>
             <div className='container mx-auto'>
                 <div className='flex gap-2 items-center'>
                     

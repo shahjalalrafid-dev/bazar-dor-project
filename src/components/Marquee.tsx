@@ -2,6 +2,8 @@
 import React, { Suspense } from 'react';
 import MarqueeText from 'react-marquee-text';
 import 'react-marquee-text/dist/styles.css';
+import { IoTriangleSharp } from "react-icons/io5";
+import { TbTriangleInvertedFilled } from "react-icons/tb";
 
 export interface IMarquee {
     categoryIcon: string;
@@ -29,17 +31,17 @@ const MarqueeContent = async () => {
     const data: IMarquee[] = await res.json();
 
     return (
-        <MarqueeText>
+        <MarqueeText className='py-2' duration={30} pauseOnHover= {true} >
             {data.map((item, index) => (
-                <div key={`${item.nameBn}-${index}`}>
+                <div className='cursor-pointer' key={`${item.nameBn}-${index}`}>
                     <span>
                         <span>{item.categoryIcon}</span>{' '}
                         <span>{item.nameBn}</span>{' '}
                         <span>
                             {item.today} টাকা/{item.unit}
                         </span>{' '}
-                        <span className="mr-2">
-                            {item.change.dir === 'up' ? '▲' : item.change.dir === 'down' ? '▼' : ''}
+                        <span className="mr-8">
+                            {item.change.dir === 'up' ? <IoTriangleSharp className='inline-block text-red-400 text-sm mb-1 mr-1' /> : item.change.dir === 'down' ? <TbTriangleInvertedFilled  className='inline-block text-green-600 text-sm mb-1 mr-1' /> : ''}
                             {item.change.pct}%
                         </span>
                     </span>
