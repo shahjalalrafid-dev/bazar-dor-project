@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 
-import { Noto_Serif_Bengali } from "next/font/google";
+import { Anek_Bangla } from "next/font/google";
+
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Marquee from "@/components/Marquee";
 import { ToastContainer } from "react-toastify";
 
+const anekBangla = Anek_Bangla({
+    subsets: ["latin", "bengali"],
+})
 
 
-const notoSerifBengali = Noto_Serif_Bengali({
-  
-  subsets: ["latin", "bengali"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,7 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${notoSerifBengali.className} h-full antialiased`}
+      className={`${anekBangla.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Header />

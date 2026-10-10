@@ -22,22 +22,26 @@ async function CategoriesList() {
   const data: INav[] = await res.json();
 
   return (
-    <section className="container mx-auto overflow-x-auto px-4 py-4">
-      <div className="flex gap-7">
-        {data.map((item) => (
-          <Link
-            href={`/category/${item.slug}`}
-            key={item.id}
-            className="shrink-0"
-          >
-            <div className="flex cursor-pointer items-center gap-1.5">
-              <div className="text-xs">{item.icon}</div>
-              <div className="text-xs font-semibold">{item.nameBn}</div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </section>
+    
+      <section className="container mx-auto overflow-x-auto px-4 py-4">
+        <div className="flex gap-7">
+          {data.map((item) => (
+            <Link
+              href={`/category/${item.slug}`}
+              key={item.id}
+              className="shrink-0"
+            >
+              <div className="flex cursor-pointer items-center gap-1.5">
+                <div className="text-xs">{item.icon}</div>
+                <div className="text-xs font-semibold">{item.nameBn}</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+ 
+
+
   );
 }
 

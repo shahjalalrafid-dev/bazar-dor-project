@@ -15,7 +15,7 @@ const Header = () => {
 
 
     return (
-        <header>
+        <header className="px-7">
             <nav className='container mx-auto py-3.5'>
                 <div className='flex justify-between'>
                     <div className='flex gap-2 items-center'>
