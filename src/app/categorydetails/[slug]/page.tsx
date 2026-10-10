@@ -39,7 +39,7 @@ async function CategoryDetailsContent({ params }: PageProps) {
   const { slug } = await params;
 
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products/${encodeURIComponent(slug)}`,
+    `hhttps://openapi.programming-hero.com/api/bazardor/products/${encodeURIComponent(slug)}`,
     {
       cache: "no-store",
     }

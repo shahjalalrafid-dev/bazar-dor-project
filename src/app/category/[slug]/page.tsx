@@ -30,7 +30,7 @@ async function CategoryProducts({ params }: PageProps) {
   const { slug } = await params;
 
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products?category=${encodeURIComponent(slug)}`,
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${encodeURIComponent(slug)}`,
     { cache: "no-store" }
   );
 
