@@ -1,7 +1,7 @@
 # 🛒 বাজার দর (Bazar-Dor-Project)
 
 > A modern, real-time web application designed to track and monitor daily essential commodity prices in local markets—keeping consumers informed with up-to-date pricing trends, category breakdowns, and market fluctuations.
-[![Live Demo](https://bazar-dor-project-psi.vercel.app/)]
+[Live Demo](https://bazar-dor-project-psi.vercel.app/)
 
 ---
 
