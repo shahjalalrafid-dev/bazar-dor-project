@@ -1,40 +1,46 @@
 
-import React from 'react'
+
 import { BsCart4 } from "react-icons/bs";
 import NavLinks from './NavLinks';
-import Link from 'next/link';
+
 import UserInfo from './UserInfo';
+import CurrentDate from './CurrentDate';
+import { Suspense } from "react";
 
 
-const Header = async() => {
-   
-
-    const date = new Date().toLocaleDateString("bn-bd" , {
-        dateStyle: "full"
-    });
+const Header = () => {
 
 
-  return (
-    <header>
-        <nav className='container mx-auto py-3.5'>
-            <div className='flex justify-between'>
-                <div className='flex gap-2 items-center'>
-                    <BsCart4 className='text-4xl cursor-pointer bg-green-700 rounded-sm p-1.5 text-white' />
-                    <div>
-                        <h4 className='font-bold text-xl'>বাজার দর</h4>
-                        <h6>{date}</h6>
 
+
+
+    return (
+        <header>
+            <nav className='container mx-auto py-3.5'>
+                <div className='flex justify-between'>
+                    <div className='flex gap-2 items-center'>
+                        <BsCart4 className='text-4xl cursor-pointer bg-green-700 rounded-sm p-1.5 text-white' />
+                        <div>
+                            <h4 className='font-bold text-xl'>বাজার দর</h4>
+
+                            <Suspense fallback={<h6>তারিখ লোড হচ্ছে...</h6>}>
+                                <CurrentDate />
+                            </Suspense>
+
+
+                        </div>
                     </div>
+                    <UserInfo />
+
                 </div>
-                <UserInfo />
+                <Suspense fallback={<div>পণ্য লোড হচ্ছে...</div>}>
+                    <NavLinks />
+                </Suspense>
 
-            </div>
 
-            <NavLinks />
-
-        </nav>
-    </header>
-  )
+            </nav>
+        </header>
+    )
 }
 
 export default Header
