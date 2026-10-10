@@ -1,7 +1,7 @@
 import React from 'react'
 import { TbTriangleInvertedFilled } from "react-icons/tb";
 
-export interface IIncrease {
+export interface IDecrease {
     categoryIcon: string,
     categoryNameBn: string,
     nameBn: string,
@@ -24,31 +24,31 @@ const TodayDecrease = async () => {
 
 
     return (
-        <section>
+        <section className='px-7'>
             <div className='container mx-auto'>
-                <div className='flex gap-2 items-center'>
+                <div className='flex gap-2 items-center mt-10 mb-3'>
                     <TbTriangleInvertedFilled  className='text-green-600' />
-                    <h6 className='font-bold text-xl'>আজ দাম কমেছে</h6>
+                    <h6 className='font-bold text-xl '>আজ দাম কমেছে</h6>
 
                 </div>
-                <div className='grid grid-cols-3 gap-4'>
+                <div className='grid grid-cols-3 gap-4 '>
                     {
-                        filteredData.slice(0, 6).map((item: IIncrease, index: number) =>
+                        filteredData.sort((a:IDecrease,b:IDecrease) => a.change.pct - b.change.pct ).slice(0, 6).map((item: IDecrease, index: number) =>
 
 
 
-                            <div key={index} className=' cursor-pointer bg-gray-400 rounded-2xl p-4'>
+                            <div key={index} className=' cursor-pointer bg-base-300 rounded-2xl p-4'>
                                 <div className='flex gap-2'>
-                                    <div className='w-12 h-12 bg-base-200'>
-                                        {item.categoryIcon}
+                                    <div className='w-12 h-12 bg-base-200 relative'>
+                                        <p className='w-full text-4xl absolute top-1'>{item.categoryIcon} </p>
                                     </div>
                                     <div>
-                                        <p>{item.categoryNameBn}</p>
+                                        <p>{item.nameBn}</p>
                                         <p>প্রতি কেজি</p>
                                     </div>
 
                                 </div>
-                                <p>আজকের দাম</p>
+                                <p className='mt-2 mb-1'>আজকের দাম</p>
                                 <div className='flex justify-between'>
                                     <p>{item.today} টাকা</p>
                                     <div className='flex items-center gap-1'>

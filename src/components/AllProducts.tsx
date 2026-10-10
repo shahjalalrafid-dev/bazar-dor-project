@@ -7,7 +7,7 @@ export interface IAllProducts {
     nameBn: string,
     unit: string,
     today: number,
-   
+
     change: {
         dir: string;
         pct: number;
@@ -23,24 +23,24 @@ const AllProducts = async () => {
 
 
     return (
-        <section id='allproducts'>
+        <section id='allproducts' className='px-7 mb-18'>
             <div className='container mx-auto'>
                 <div className='flex gap-2 items-center'>
-                    
-                    <h6 className='font-bold text-xl'>সব পণ্য</h6>
+
+                    <h6 className='font-bold text-xl mt-10 mb-3'>সব পণ্য</h6>
 
                 </div>
-                <p className='text-gray-300'>মোট {data.length}টি পণ্য দেখানো হচ্ছে</p>
+                <p className='text-gray-300 mb-4'>মোট {data.length}টি পণ্য দেখানো হচ্ছে</p>
                 <div className='grid grid-cols-3 gap-4'>
                     {
                         data.map((item: IAllProducts, index: number) =>
 
 
 
-                            <div key={index} className=' cursor-pointer bg-gray-400 rounded-2xl p-4'>
+                            <div key={index} className=' cursor-pointer bg-base-300 rounded-2xl p-4'>
                                 <div className='flex gap-2'>
-                                    <div className='w-12 h-12 bg-base-200'>
-                                        {item.categoryIcon}
+                                    <div className='w-12 h-12 bg-base-200 relative'>
+                                        <p className='w-full text-4xl absolute top-1'>{item.categoryIcon} </p>
                                     </div>
                                     <div>
                                         <p>{item.nameBn}</p>
@@ -48,12 +48,12 @@ const AllProducts = async () => {
                                     </div>
 
                                 </div>
-                                <p>আজকের দাম</p>
+                                <p className='mt-2 mb-1'>আজকের দাম</p>
                                 <div className='flex justify-between'>
                                     <p>{item.today} টাকা</p>
                                     <div className='flex items-center gap-1'>
                                         {
-                                            item.change.dir === "down" ? <TbTriangleInvertedFilled className='text-green-600' /> : <IoTriangleSharp className='text-red-400' />
+                                            item.change.dir === "up" ? (<IoTriangleSharp className='text-red-400' />) : item.change.dir === "down" ? (<TbTriangleInvertedFilled className='text-green-600' />) :  ("")
                                         }
                                         
                                         <p>{item.change.pct}%</p>
