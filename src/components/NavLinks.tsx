@@ -1,6 +1,7 @@
 
-import Link from "next/link";
+
 import React, { Suspense } from "react";
+import ActiveNavlink from "./ActiveNavlink";
 
 export interface INav {
   id: string;
@@ -25,17 +26,8 @@ async function CategoriesList() {
     
       <section className="container mx-auto overflow-x-auto px-4 py-4">
         <div className="flex gap-7">
-          {data.map((item) => (
-            <Link
-              href={`/category/${item.slug}`}
-              key={item.id}
-              className="shrink-0"
-            >
-              <div className="flex cursor-pointer items-center gap-1.5">
-                <div className="text-xs">{item.icon}</div>
-                <div className="text-xs font-semibold">{item.nameBn}</div>
-              </div>
-            </Link>
+          {data.map((item, index) => (
+            <ActiveNavlink key={index} item={item} />
           ))}
         </div>
       </section>
