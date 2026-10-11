@@ -21,7 +21,7 @@ const TodayDecrease = async () => {
 
     const res = await fetch('https://openapi.programming-hero.com/api/bazardor/products');
     const data = await res.json();
-    const filteredData = data.filter((item: IIncrease) => item.change.dir === "down");
+    const filteredData = data.filter((item: IDecrease) => item.change.dir === "down");
 
 
 
