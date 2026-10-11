@@ -19,11 +19,11 @@ const UserInfo = () => {
         <div className='flex gap-2'>
             {
                 user ? <select defaultValue="Pick a font" className="select select-ghost">
-                    <option>{user?.name}</option>
+                   <Link href={'/'}><option>{user?.name}</option></Link> 
                     <option disabled={true}>{user?.email}</option>
                     
                     <Link href={'/profile'} ><option>আমার প্রোফাইল</option></Link> 
-                    <option onClick={handleSignOut} >সাইন আউট</option>
+                    <option onClick={handleSignOut} >↩ সাইন আউট</option>
                     
                 </select> : <> <Link href={'/signin'}  ><button className="btn btn-outline font-semibold text-sm">সাইন ইন</button></Link>
                     <Link href={'/signup'}><button className="btn btn-success font-semibold text-sm">সাইন আপ</button></Link></>

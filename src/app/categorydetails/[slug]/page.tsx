@@ -1,4 +1,5 @@
 
+import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
 
 interface PageProps {
@@ -46,10 +47,14 @@ async function CategoryDetailsContent({ params }: PageProps) {
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch product details");
+    
+    notFound();
   }
 
   const products: IProductData = await res.json();
+  if (!products) {
+      notFound();
+    }
   const markets: MarketInfo[] = products.markets ?? [];
   const minPrice = products.markets.reduce((min, item) => item.min < min ? item.min : min , Infinity );
   const maxPrice = products.markets.reduce((max, item) => item.max > max ? item.max : max , -Infinity );

@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { IProduct, SortOption } from './product';
 import Link from 'next/link';
 import { TbTriangleInvertedFilled } from 'react-icons/tb';
-import { IoTriangleSharp } from 'react-icons/io5';
+import { IoHomeOutline, IoTriangleSharp } from 'react-icons/io5';
 import SortBy from './SortBy';
 interface CategoryProductProps {
-  products: IProduct[];
+    products: IProduct[];
 }
 
 const CategoryProduct = ({ products }: CategoryProductProps) => {
@@ -19,9 +19,14 @@ const CategoryProduct = ({ products }: CategoryProductProps) => {
     } else if (sortBy === "maxtomin") {
         filteredProducts.sort((a, b) => b.today - a.today);
     }
+    
+
+
 
 
     return (
+
+
         <section>
             <div className="container mx-auto px-4 py-4">
                 <div className="flex justify-between">

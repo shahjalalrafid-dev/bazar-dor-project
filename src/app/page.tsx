@@ -10,21 +10,21 @@ export default function Home() {
     <>
     
       
-      <Suspense fallback={<div>লোড হচ্ছে...</div>}>
+      
                 <Banner />
-            </Suspense>
+            
 
-            <Suspense fallback={<div>দাম লোড হচ্ছে...</div>}>
+            
                 <TodayIncrease />
-            </Suspense>
+            
 
-            <Suspense fallback={<div>দাম লোড হচ্ছে...</div>}>
+            
                 <TodayDecrease />
-            </Suspense>
+            
 
-            <Suspense fallback={<div>পণ্য লোড হচ্ছে...</div>}>
+            
                 <AllProducts />
-            </Suspense>
+            
 
 
     </>

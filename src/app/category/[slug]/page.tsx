@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 
 import { IProduct } from "./product";
 import CategoryProduct from "./CategoryProduct";
+import { notFound } from "next/navigation";
 
  interface PageProps {
   params: Promise<{ slug: string }>;
@@ -18,11 +19,14 @@ async function CategoryProducts({ params }: PageProps) {
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch products");
+    notFound();
   }
+  
 
   const products : IProduct[]  = await res.json();
-
+  if (!products || products.length === 0) {
+    notFound();
+  }
 
   return (
     <CategoryProduct products={products} />
@@ -32,14 +36,8 @@ async function CategoryProducts({ params }: PageProps) {
 
 export default function CategoryItem({ params }: PageProps) {
   return (
-    <Suspense
-      fallback={
-        <div className="container mx-auto px-4 py-8">
-          পণ্যের তথ্য লোড হচ্ছে...
-        </div>
-      }
-    >
+    
       <CategoryProducts params={params} />
-    </Suspense>
+    
   );
 }
