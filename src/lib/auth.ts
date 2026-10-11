@@ -15,6 +15,12 @@ const client = new MongoClient(mongoUrl);
 const db = client.db("bazar-dor-project");
 
 export const auth = betterAuth({
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google", "github"], // Add your provider IDs here (e.g., "google", "github", etc.)
+    },
+  },
   emailAndPassword: {
     enabled: true,
   },
